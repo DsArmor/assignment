@@ -41,12 +41,9 @@ public class Pipeline implements Serializable {
      * Внутри обертки вызывает блоки выполнения заявленных шагов
      */
     public void execute() {
-        script.ansiColor('xterm') {
-            // добавляет временную отметку к логируемому действию
-            script.timestamps {
-                script.node() {
-                    executeStages(stages)
-                }
+        script.timestamps {
+            script.node() {
+                executeStages(stages)
             }
         }
     }
@@ -56,7 +53,7 @@ public class Pipeline implements Serializable {
      * @param stages набор шагов
      */
     protected void executeStages(List<Stage> stages) throws Exception {
-        stages.each { it->
+        stages.each { it ->
             it.executeStage(script)
         }
     }
