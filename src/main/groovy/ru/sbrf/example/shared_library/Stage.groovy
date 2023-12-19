@@ -16,12 +16,12 @@ abstract class Stage implements Serializable {
      * Выполняет шаг с логированием
      * @param script скрипт, предоставляет методы плагинов jenkins
      */
-    void executeStage(Script script) throws Exception {
-        logging('Start stage')
+    final void executeStage(Script script) throws Exception {
+        logging(script,'Start stage')
         script.stage(name) {
             execute(script)
         }
-        logging('Complete stage')
+        logging(script,'Complete stage')
     }
 
     /**
@@ -34,7 +34,7 @@ abstract class Stage implements Serializable {
      */
     abstract protected void execute(Script script)
 
-    protected final logging(String message) {
+    public final logging(Script script, String message) {
         script.echo(message)
     }
 
