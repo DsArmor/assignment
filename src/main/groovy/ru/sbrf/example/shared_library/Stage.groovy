@@ -34,7 +34,12 @@ abstract class Stage implements Serializable {
      */
     abstract protected void execute(Script script)
 
-    public final logging(Script script, String message) {
+    /**
+     * Реализует вывод логов в пространстве Jenkins
+     * @param script рабочая область Jenkins для исполнения команд плагинов
+     * @param message логируемое сообщение
+     */
+    public final void logging(Script script, String message) {
         script.echo(message)
     }
 
